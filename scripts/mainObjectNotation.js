@@ -20,7 +20,7 @@ $('#btn-painel-maps').click(function(){
         $(".painel-maps-wrapper").fadeOut(500)
     }
     else{
-        document.getElementById("painel-maps").style.width = "15em"
+        document.getElementById("painel-maps").style.width = "17em"
         document.getElementById("painel-maps").style.height = "15em"
         $("#icon-painel-map").css({'transform': 'rotate(-90deg)'})
         $(".painel-maps-wrapper").fadeIn(500)
