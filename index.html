@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style/selectric.css">
+    <link rel="stylesheet" type="text/css" href="style/style.css">
+    <title>Aluguel de Casas</title>
+</head>
+
+<body>
+    <div class="page">
+        <div class="header">
+            <nav class="header-nav">
+                <div class="header-group">
+                    <button class="header-button Color-CB1">Aluga São José dos Campos</button>
+                </div>
+                <div class="header-group">
+                    <button class="header-button logo"><img src="./media/imgs/icons/logoAlugaUltraSmall.png"></button>
+                </div>
+                <div class="header-group">
+                    <button id="btn-anunciar" class="header-button Color-CB3">Anunciar o seu Espaço!</button>
+                    <button class="header-button Color-CB2">Login</button>
+                </div>
+                
+            </nav>
+        </div>
+        <div class="content">
+            <div class="wrapper-map">
+                <div id="canvas-map"></div>
+                <div id="mn-sr" class="menu-side-right">
+                    <div class="menu-wrapper">
+                        <div class="menu-title"><span class="Razura2">Anuncie aqui!</span></div>
+                        <div class="menu-line"></div>
+                        
+                        <div class="menu-item">
+                            <span class="Razura3">Titulo do anúncio:</span>
+                            <span class="Razura3"><input type="text" id="txt-titulo" class="form-text"/></span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="Razura3">Proprietario:</span>
+                            <span class="Razura3"><input type="text" id="txt-autor" class="form-text"/></span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="Razura3">Descrição:</span>
+                            <span class="Razura3"><input type="text" id="txt-descricao" class="form-text"/></span>
+                        </div>
+
+                        <div class="menu-item">
+                            <span class="Razura3">Telefone:</span>
+                            <span class="Razura3"><input type="text" id="txt-telefone" class="form-text"/></span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="Razura3">Tipo de moradia:</span>
+                                <select id="slc-moradia" class="select-model">
+                                    <option value="1">Apartamento</option>
+                                    <option value="2">Casa</option>
+                                    <option value="3">República</option>
+                                    <option value="4">Pensão</option>
+                                </select>
+                        </div>
+                        <div class="menu-item">
+                            <span class="Razura3">Endereço:</span>
+                            <span class="Razura3"><input type="text" id="txt-endereco" class="form-text"/></span>
+                            <div id="txt-endereco-result"></div>
+                        </div>
+
+                        <div class="menu-item">
+                                <button id="btn-anunciar-enviar" class="header-button Color-CB1">Anunciar Moradia!</button>  
+                        </div>
+
+                    </div>
+                </div>
+                <div id="painel-maps" class="painel-maps">
+                    <div class="painel-maps-wrapper">
+                        <div class="group-organizer">
+                            <div class="group-item special-center">
+                                <span class="Razura1">Legenda!</span>
+                            </div>
+                            <div class="group-item"><div class="interruptor-canvas"><div id="itr-apartamento" class="interruptor-box" value='1'><div id="itr-apartamento-ball" class="interruptor-ball"></div>
+                            </div><span class="legendsMapPainel Color-SL1">Apartamento</span></div></div>
+                            <div class="group-item"><div class="interruptor-canvas"><div id="itr-casa" class="interruptor-box" value='2'><div id="itr-casa-ball" class="interruptor-ball"></div>
+                            </div><span class="legendsMapPainel Color-SL2">Casas</span></div></div>
+                            <div class="group-item"><div class="interruptor-canvas"><div id="itr-republica" class="interruptor-box" value='3'><div id="itr-republica-ball" class="interruptor-ball"></div>
+                            </div><span class="legendsMapPainel Color-SL3">Repúblicas</span></div></div>
+                            <div class="group-item"><div class="interruptor-canvas"><div id="itr-pensao" class="interruptor-box" value='4'><div id="itr-pensao-ball" class="interruptor-ball"></div>
+                            </div><span class="legendsMapPainel Color-SL4">Pensões</span></div></div>
+                        </div>
+
+                    </div>
+                    <button id="btn-painel-maps" class="btn-painel-maps">
+                        <i id="icon-painel-map" class="material-icons" style="color: #283593;">keyboard_arrow_right</i>
+                        
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+        </div>
+    </div>
+    <script  src="https://code.jquery.com/jquery-3.3.1.min.js" 
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAlLLgWnNjy-ArLJZx9v9vypDll5gQj9Xo"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="scripts/module/jquery.selectric.min.js"></script>
+    <script src="scripts/mapObjectNotation.js"></script>
+    <script src="scripts/mainObjectNotation.js"></script>
+</body>
+</html>
