@@ -21,7 +21,7 @@ $('#btn-painel-maps').click(function(){
     }
     else{
         document.getElementById("painel-maps").style.width = "19em"
-        document.getElementById("painel-maps").style.height = "15em"
+        document.getElementById("painel-maps").style.height = "13em"
         $("#icon-painel-map").css({'transform': 'rotate(-90deg)'})
         $(".painel-maps-wrapper").fadeIn(500)
 
@@ -30,8 +30,11 @@ $('#btn-painel-maps').click(function(){
 })
 
 $('#btn-anunciar-enviar').click(function(){
-    map1.reload()
+    /*map1.reload()
     map1.pesquisarEndereco($('#txt-endereco').val())
+    console.log(map1.lastSearch)
+    let temporal = new Lugar( (map1.lugares.length+1), [-23.201981, -45.894453], 'Info 5', 'LOMPA', 0 ,'321312')*/
+    controlSystem.processoAdicionar($('#txt-titulo').val(), $('#txt-autor').val(), $('#txt-descricao').val(), $('#txt-telefone').val(), $('#txt-endereco').val(), map1)
 })
 
 $('.interruptor-box').click(function(){

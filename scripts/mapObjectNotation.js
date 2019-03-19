@@ -10,13 +10,59 @@ jQuery.event.special.touchstart = {
 
 class Controlador {
     constructor() {
-        console.log("controlador Criado")
+        //console.log("controlador Criado")
+        this.historicoSearch = []
     }
-    adicionarLugares() {
-        console.log("Adiciando na Lista")
+    confereEntrada(titulo, autor, descricao, telefone, endereco){
+        //console.log(typeof titulo, typeof autor, typeof descricao, typeof telefone, typeof endereco)
+        if(typeof titulo != "string" && typeof autor!= "string" && typeof descricao != "string" && typeof telefone != "string" && typeof endereco != "string"){
+            console.log("Erro - Um dos valores dados não é String")
+            return 0
+        } else if(titulo.length > 25 && autor.length > 40 && descricao.length > 25 && telefone.length > 12 && endereco.length > 100){
+            console.log("Erro - Um dos campos possui tamanho maior do que o recomendado")
+            return 0
+        }
+        else {
+            console.log("Ativado")
+            return 1
+        }
     }
-    removerLugares() {
-        console.log("Removido da Lista")
+    pesquisarEndereco(endereco, focus, callback){
+        focus.geocoder.geocode({
+            'address': endereco,
+            componentRestrictions: {
+                country: 'BR'
+            },
+            bounds: {
+                north: -23.116795,
+                east: -45.724563,
+                south: -23.308354,
+                west: -46.055684
+            }
+        },
+        function (results, status) {
+            if (status == 'OK') {
+                //console.log("Work!", results[0])
+                if(callback){callback(results[0])}
+                
+            } else {
+                alert('Geocode nao foi sucedido por causa: ' + status);
+            }
+            
+        })       
+    }
+    processoAdicionar(titulo, autor, descricao, telefone, endereco, focus){
+        const manipulaData = (data) => {
+            this.historicoSearch.push(data)
+            console.log("Resultado:", this.historicoSearch)
+            
+        }
+        if(this.confereEntrada(titulo, autor, descricao, telefone, endereco)){
+            this.pesquisarEndereco(endereco, focus, manipulaData)
+        }
+        else{
+            console.log("Não funcional!")
+        }
     }
 }
 
@@ -112,34 +158,6 @@ class Mapa {
     reload(){
         this.showByType(this.menuAtivado)
     }
-
-    pesquisarEndereco(endereco){
-        this.geocoder.geocode({
-            'address': endereco,
-            componentRestrictions: {
-                country: 'BR'
-            },
-            bounds: {
-                north: -23.116795,
-                east: -45.724563,
-                south: -23.308354,
-                west: -46.055684
-            }
-        },
-        function (results, status) {
-            if (status == 'OK') {
-                console.log("Resultado:", results[0])
-                $('#txt-endereco-resul').html(results[0])
-                swal("Adicionado com sucesso!", "Seu endereço está no mapa!", "success");
-            } else {
-                alert('Geocode nao foi sucedido por causa: ' + status);
-            }
-        })
-    }
-
-
-
-
 }
 
 class Lugar {
@@ -187,3 +205,5 @@ const map1 = new Mapa()
 let listaAdicional = [local1, local2, local5]
 map1.adicionarLugares(...listaAdicional) // funcionou também
 map1.adicionarLugares(local3, local4)
+const controlSystem = new Controlador()
+
