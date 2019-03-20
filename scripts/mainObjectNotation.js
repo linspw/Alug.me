@@ -58,6 +58,7 @@ const verificaInterruptor = () => {
 }
 const verificaAnunciarSlots = () => {
     if($('#txt-titulo').val() == ""){
+        swal("Opa!", "Algum campo não foi preenchido!", "error" )
         return
     }
     if($('#txt-autor').val() == ""){
@@ -76,6 +77,8 @@ const verificaAnunciarSlots = () => {
         return 1
     }
 }
+
+
 $(document).ready(function(){
     $('select').selectric()
     $('#btn-painel-maps').click()

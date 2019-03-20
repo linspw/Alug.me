@@ -221,10 +221,7 @@ body{margin: 0; position: absolute;
                     .pac-container:after {                
                         background-image: none !important;
                         height: 0px;
-                    }
-                .pac-item{
-
-                }           
+                    }         
                 
 
             .selectric{

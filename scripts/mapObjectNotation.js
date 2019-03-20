@@ -48,7 +48,7 @@ class Controlador {
             })
     }
     processoAdicionar(titulo, autor, descricao, telefone, endereco, focus, tipoMoradia = 0) {
-        const manipulaData = (data) => { //Metodo para dar funcionalidade ao processo de adicionar
+        const adicionarLugar = (data) => { //Metodo para dar funcionalidade ao processo de adicionar
             this.historicoSearch.push(data)
             swal({
                 title: "Você confirma a posição?",
@@ -66,7 +66,7 @@ class Controlador {
             })
         }
         if (this.confereEntrada(titulo, autor, descricao, telefone, endereco)) {
-            this.pesquisarEndereco(endereco, focus, manipulaData)
+            this.pesquisarEndereco(endereco, focus, adicionarLugar)
         }
         else {
             console.log("Não funcional!")
@@ -231,6 +231,7 @@ class Lugar {
         this.typePLace = typePLace
         this.celphone = celphone
         this.title = title
+        this.text = text
         this.marker = new google.maps.Marker({
             position: { lat: Location[0], lng: Location[1] },
             title: title,
@@ -249,17 +250,15 @@ class Lugar {
     }
 }
 
-const local1 = new Lugar(01, [-23.201498, -45.902723], 'Info 1', 'OK', 1, '12996277432')
-const local2 = new Lugar(02, [-23.199651, -45.895396], 'Info 2', 'NopK', 2, '12829229')
-const local3 = new Lugar(03, [-23.191961, -45.887258], 'Info 3', 'Yapek', 3, '099292')
-const local4 = new Lugar(04, [-23.190542, -45.889426], 'Info 4', 'JUP', 4, '022')
-const local5 = new Lugar(05, [-23.201981, -45.894453], 'Info 5', 'LOMPA', 0, '321312')
-//console.log(local5)
-
+const local1 = new Lugar(01, [-23.201498, -45.902723], 'Info 1', 'OK', 1, '12996277432', 'Avenida São João')
+const local2 = new Lugar(02, [-23.199651, -45.895396], 'Info 2', 'NopK', 2, '12829229', 'Avenida 9 de Julho')
+const local3 = new Lugar(03, [-23.191961, -45.887258], 'Info 3', 'Yapek', 3, '099292', 'Rua Euclídes Miragaia')
+const local4 = new Lugar(04, [-23.190542, -45.889426], 'Info 4', 'JUP', 4, '022', 'Rua Major Antonio Domingues')
+const local5 = new Lugar(05, [-23.201981, -45.894453], 'Info 5', 'LOMPA', 1, '321312', 'Praça do Sol - Vila Adyana')
 
 const map1 = new Mapa()
 let listaAdicional = [local1, local2, local5]
-map1.adicionarLugares(...listaAdicional) // funcionou também
-map1.adicionarLugares(local3, local4)
+map1.adicionarLugares(...listaAdicional) // Adicionar em forma de lista!
+map1.adicionarLugares(local3, local4) // Adicionar Diretamente
 const controlSystem = new Controlador()
 
