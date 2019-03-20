@@ -14,14 +14,14 @@
         <div class="header">
             <nav class="header-nav">
                 <div class="header-group">
-                    <button class="header-button Color-CB1">Aluga São José dos Campos</button>
+                    <button class="header-button Color-CB1" tabindex="1">Aluga em São José dos Campos</button>
                 </div>
                 <div class="header-group">
-                    <button class="header-button logo"><img src="./media/imgs/icons/logoAlugaUltraSmall.png"></button>
+                    <button class="header-button logo" tabindex="2"><img src="./media/imgs/icons/logoAlugaUltraSmall.png"></button>
                 </div>
                 <div class="header-group">
-                    <button id="btn-anunciar" class="header-button Color-CB3">Anunciar o seu Espaço!</button>
-                    <button class="header-button Color-CB2">Login</button>
+                    <button id="btn-anunciar" class="header-button Color-CB3" tabindex="3">Anunciar o seu Espaço!</button>
+                    <button class="header-button Color-CB2" tabindex="4">Login</button>
                 </div>
                 
             </nav>
@@ -36,24 +36,30 @@
                         
                         <div class="menu-item">
                             <span class="Razura3">Titulo do anúncio:</span>
-                            <span class="Razura3"><input type="text" id="txt-titulo" class="form-text" maxlength="30"/></span>
+                            <span class="Razura3"><input type="text" id="txt-titulo" class="form-text" maxlength="30" tabindex="5"/></span>
                         </div>
                         <div class="menu-item">
                             <span class="Razura3">Proprietario:</span>
-                            <span class="Razura3"><input type="text" id="txt-autor" class="form-text" maxlength="25"/></span>
+                            <span class="Razura3"><input type="text" id="txt-autor" class="form-text" maxlength="25" tabindex="6"/></span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="Razura3">Endereço:</span>
+                            <span class="Razura3"><input type="text" id="txt-endereco" class="form-text" maxlength="100" tabindex="7" placeholder="pesquisar endereço.."/><i id="check-endereco" class="far fa-check-circle"></i>
+                            </span>
+                            <div id="txt-endereco-result"></div>
                         </div>
                         <div class="menu-item">
                             <span class="Razura3">Descrição:</span>
-                            <span class="Razura3"><input type="text" id="txt-descricao" class="form-text" maxlength="100"/></span>
+                            <span class="Razura3"><input type="text" id="txt-descricao" class="form-text" maxlength="100" tabindex="8"/></span>
                         </div>
 
                         <div class="menu-item">
                             <span class="Razura3">Telefone:</span>
-                            <span class="Razura3"><input type="text" id="txt-telefone" class="form-text" maxlength="11"/></span>
+                            <span class="Razura3"><input type="text" id="txt-telefone" class="form-text" maxlength="11" tabindex="9"/></span>
                         </div>
                         <div class="menu-item">
                             <span class="Razura3">Tipo de moradia:</span>
-                                <select id="slc-moradia" class="select-model">
+                                <select id="slc-moradia" class="select-model" tabindex="10">
                                     <option value="1">Apartamento</option>
                                     <option value="2">Casa</option>
                                     <option value="3">República</option>
@@ -61,13 +67,7 @@
                                 </select>
                         </div>
                         <div class="menu-item">
-                            <span class="Razura3">Endereço:</span>
-                            <span class="Razura3"><input type="text" id="txt-endereco" class="form-text" maxlength="100"/></span>
-                            <div id="txt-endereco-result"></div>
-                        </div>
-
-                        <div class="menu-item">
-                                <button id="btn-anunciar-enviar" class="header-button Color-CB1">Anunciar Moradia!</button>  
+                                <button id="btn-anunciar-enviar" class="header-button Color-CB1" tabindex="11">Anunciar Moradia!</button>  
                         </div>
 
                     </div>
@@ -102,7 +102,7 @@
     <script  src="https://code.jquery.com/jquery-3.3.1.min.js" 
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlLLgWnNjy-ArLJZx9v9vypDll5gQj9Xo"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlLLgWnNjy-ArLJZx9v9vypDll5gQj9Xo&libraries=places"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="scripts/module/jquery.selectric.min.js"></script>
     <script src="scripts/mapObjectNotation.js"></script>

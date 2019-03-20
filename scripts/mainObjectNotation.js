@@ -20,7 +20,7 @@ $('#btn-painel-maps').click(function(){
         $(".painel-maps-wrapper").fadeOut(500)
     }
     else{
-        document.getElementById("painel-maps").style.width = "19em"
+        document.getElementById("painel-maps").style.width = "18em"
         document.getElementById("painel-maps").style.height = "13em"
         $("#icon-painel-map").css({'transform': 'rotate(-90deg)'})
         $(".painel-maps-wrapper").fadeIn(500)
@@ -30,11 +30,9 @@ $('#btn-painel-maps').click(function(){
 })
 
 $('#btn-anunciar-enviar').click(function(){
-    /*map1.reload()
-    map1.pesquisarEndereco($('#txt-endereco').val())
-    console.log(map1.lastSearch)
-    let temporal = new Lugar( (map1.lugares.length+1), [-23.201981, -45.894453], 'Info 5', 'LOMPA', 0 ,'321312')*/
-    controlSystem.processoAdicionar($('#txt-titulo').val(), $('#txt-autor').val(), $('#txt-descricao').val(), $('#txt-telefone').val(), $('#txt-endereco').val(), map1)
+    if(verificaAnunciarSlots()){
+        controlSystem.processoAdicionar($('#txt-titulo').val(), $('#txt-autor').val(), $('#txt-descricao').val(), $('#txt-telefone').val(), $('#txt-endereco').val(), map1, $('#slc-moradia').val())
+    }
 })
 
 $('.interruptor-box').click(function(){
@@ -59,9 +57,34 @@ const verificaInterruptor = () => {
     return listaVerificada
 }
 const verificaAnunciarSlots = () => {
+    if($('#txt-titulo').val() == ""){
+        return
+    }
+    if($('#txt-autor').val() == ""){
+        return
+    }
+    if($('#txt-descricao').val() == ""){
+        return
+    }
+    if($('#txt-telefone').val() == ""){
+        return
+    }
+    if($('#txt-endereco').val() == ""){
+        return
+    }
+    else{
+        return 1
+    }
 }
 $(document).ready(function(){
     $('select').selectric()
     $('#btn-painel-maps').click()
     $('.interruptor-box').click()
+    map1.searchBox.addListener('places_changed', function() {
+        var places = map1.searchBox.getPlaces()  
+        if (places.length == 0) {
+            return
+        }
+        map1.marcarTemporario(places[0].geometry.location.lat(), places[0].geometry.location.lng())
+    })
 })

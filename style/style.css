@@ -208,7 +208,25 @@ body{margin: 0; position: absolute;
                 padding: 2px 5px 2px 5px;
                 box-shadow: 0 1px 4px 0 rgba(0,0,0,.34);
             }
-            
+                #check-endereco{
+                    position: absolute;
+                    margin-left: 5px;
+                    margin-top: 2px;
+                    display: none;
+                }
+                .pac-container {
+                    display: absolute;
+                    border-radius: 10px;
+                }
+                    .pac-container:after {                
+                        background-image: none !important;
+                        height: 0px;
+                    }
+                .pac-item{
+
+                }           
+                
+
             .selectric{
                 width: 14em;
                 border-radius: 10px;
@@ -321,6 +339,7 @@ button:hover{
 }
 button:active{
     opacity: 0.5;
+    box-shadow: inset 0px 0px 1px 2px #315867;
 }
 
 button:disabled,
@@ -336,3 +355,22 @@ li, ul{
     padding-inline-start: 0px;
 }
 li{margin: 3px 0 3px 0;}
+
+::-webkit-scrollbar
+{
+	width: 6px !important;
+	height: 6px !important;
+}
+	::-webkit-scrollbar-track-piece  {
+		-webkit-tap-highlight-color: transparent;
+	}
+	::-webkit-scrollbar-thumb:vertical{
+		height: 4px;
+		background-color: #ffffff;
+		border-radius:2px;
+	}
+	::-webkit-scrollbar-thumb:horizontal{
+		height: 4px;
+		background-color: #ffffff;
+		border-radius:2px;
+	}

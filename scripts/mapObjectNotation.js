@@ -10,24 +10,21 @@ jQuery.event.special.touchstart = {
 
 class Controlador {
     constructor() {
-        //console.log("controlador Criado")
         this.historicoSearch = []
     }
-    confereEntrada(titulo, autor, descricao, telefone, endereco){
-        //console.log(typeof titulo, typeof autor, typeof descricao, typeof telefone, typeof endereco)
-        if(typeof titulo != "string" && typeof autor!= "string" && typeof descricao != "string" && typeof telefone != "string" && typeof endereco != "string"){
+    confereEntrada(titulo, autor, descricao, telefone, endereco) {
+        if (typeof titulo != "string" && typeof autor != "string" && typeof descricao != "string" && typeof telefone != "string" && typeof endereco != "string") {
             console.log("Erro - Um dos valores dados não é String")
             return 0
-        } else if(titulo.length > 25 && autor.length > 40 && descricao.length > 25 && telefone.length > 12 && endereco.length > 100){
+        } else if (titulo.length > 25 && autor.length > 40 && descricao.length > 25 && telefone.length > 12 && endereco.length > 100) {
             console.log("Erro - Um dos campos possui tamanho maior do que o recomendado")
             return 0
         }
         else {
-            console.log("Ativado")
             return 1
         }
     }
-    pesquisarEndereco(endereco, focus, callback){
+    pesquisarEndereco(endereco, focus, callback) {
         focus.geocoder.geocode({
             'address': endereco,
             componentRestrictions: {
@@ -40,29 +37,47 @@ class Controlador {
                 west: -46.055684
             }
         },
-        function (results, status) {
-            if (status == 'OK') {
-                //console.log("Work!", results[0])
-                if(callback){callback(results[0])}
-                
-            } else {
-                alert('Geocode nao foi sucedido por causa: ' + status);
-            }
-            
-        })       
+            function (results, status) {
+                if (status == 'OK') {
+                    if (callback) { callback(results[0]) }
+
+                } else {
+                    alert('Geocode nao foi sucedido por causa: ' + status);
+                }
+
+            })
     }
-    processoAdicionar(titulo, autor, descricao, telefone, endereco, focus){
-        const manipulaData = (data) => {
+    processoAdicionar(titulo, autor, descricao, telefone, endereco, focus, tipoMoradia = 0) {
+        const manipulaData = (data) => { //Metodo para dar funcionalidade ao processo de adicionar
             this.historicoSearch.push(data)
-            console.log("Resultado:", this.historicoSearch)
-            
+            swal({
+                title: "Você confirma a posição?",
+                text: "Uma vez confirmado iremos adicionar no mapa.",
+                icon: "info",
+                buttons: ["Cancelar", "Aceitar"],
+                dangerMode: true,
+            }).then((btAtivado) => {
+                if (btAtivado) {
+                    map1.adicionarLugares(new Lugar(map1.lugares.length + 1, [data.geometry.location.lat(), data.geometry.location.lng()], titulo, autor, tipoMoradia, telefone))
+                    swal({ title: "Lugar Adicionado!", text: "Conteudo adicionado parabéns!", icon: "success" })
+                    controlSystem.cleanDataInput()
+                    $('#btn-anunciar').click()
+                }
+            })
         }
-        if(this.confereEntrada(titulo, autor, descricao, telefone, endereco)){
+        if (this.confereEntrada(titulo, autor, descricao, telefone, endereco)) {
             this.pesquisarEndereco(endereco, focus, manipulaData)
         }
-        else{
+        else {
             console.log("Não funcional!")
         }
+    }
+    cleanDataInput() {
+        $('#txt-titulo').val("")
+        $('#txt-autor').val("")
+        $('#txt-endereco').val("")
+        $('#txt-descricao').val("")
+        $('#txt-telefone').val("")
     }
 }
 
@@ -71,10 +86,16 @@ class Mapa {
     constructor() {
         this.lugares = []
         this.menuAtivado = [true, true, true, true, true]
-        this.estilo = [{"featureType": "poi","elementType": "labels.text","stylers": [{"visibility": "off"}]},{"featureType": "poi.business",
-                "stylers": [{"visibility": "off"}]},{"featureType": "road","elementType": "labels.icon",
-                "stylers": [{"visibility": "off"}]},{"featureType": "transit",
-                "stylers": [{"visibility": "off"}]}]
+        this.estilo = [{ "featureType": "poi", "elementType": "labels.text", "stylers": [{ "visibility": "off" }] }, {
+            "featureType": "poi.business",
+            "stylers": [{ "visibility": "off" }]
+        }, {
+            "featureType": "road", "elementType": "labels.icon",
+            "stylers": [{ "visibility": "off" }]
+        }, {
+            "featureType": "transit",
+            "stylers": [{ "visibility": "off" }]
+        }]
         this.mapOptions = {
             center: new google.maps.LatLng(-23.199651, -45.895396),
             zoom: 15,
@@ -100,11 +121,20 @@ class Mapa {
             }
         })
         this.geocoder = new google.maps.Geocoder()
-
+        this.searchBox = new google.maps.places.SearchBox(document.getElementById("txt-endereco"), {
+            bounds: {
+                north: -23.116795,
+                east: -45.724563,
+                south: -23.308354,
+                west: -46.055684
+            }
+        })
+        this.temporalMarker = new google.maps.Marker()
     }
 
     adicionarLugares(...local) {
         local.forEach((l) => { this.lugares.push(l) })
+        this.reload()
     }
 
     removerLugares(ID = false, typePlaces = false) {
@@ -119,6 +149,31 @@ class Mapa {
         } else {
             this.lugares = []
         }
+    }
+    marcarTemporario(lat, lng, title = "Seu anuncio") {
+        this.temporalMarker.setMap(null)
+        var iconBase = {
+            url: "./media/imgs/icons/home-icon.png",
+            scaledSize: new google.maps.Size(32, 32),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(0, 0)
+        }
+        var infoWindow = new google.maps.InfoWindow({
+            content: '<div>Seu marcador!</div>'
+        })
+        this.temporalMarker = new google.maps.Marker({
+            position: { lat, lng },
+            title: title,
+            icon: iconBase
+        })
+        this.temporalMarker.setMap(this.canvasMap)
+        infoWindow.open(this.map, this.temporalMarker)
+        this.temporalMarker.addListener('click', function () {
+            infoWindow.open(this.map, this.temporalMarker)
+        })
+    }
+    removerTemporario() {
+        this.temporalMarker.setMap(null)
     }
     showByType(valor) {
         this.menuAtivado = valor
@@ -155,23 +210,24 @@ class Mapa {
         )
     }
 
-    reload(){
+    reload() {
+        this.temporalMarker.setMap(null)
         this.showByType(this.menuAtivado)
     }
 }
 
 class Lugar {
-    constructor(ID, Location, title, text, typePLace = 0, celphone=null, andress=null) {
+    constructor(ID, Location, title, text, typePLace = 0, celphone = null, andress = null) {
         this.ID = ID
         this.Location = { lat: Location[0], lng: Location[1] }
-        
+
         this.andress = andress
 
         let iconBase = './media/imgs/icons/'
-        if(typePLace==1){iconBase += 'Apartamento.png'}
-        if(typePLace==2){iconBase += 'Casa.png'}
-        if(typePLace==3){iconBase += 'Republica.png'}
-        if(typePLace==4){iconBase += 'Pensao.png'}
+        if (typePLace == 1) { iconBase += 'Apartamento.png' }
+        if (typePLace == 2) { iconBase += 'Casa.png' }
+        if (typePLace == 3) { iconBase += 'Republica.png' }
+        if (typePLace == 4) { iconBase += 'Pensao.png' }
         this.typePLace = typePLace
         this.celphone = celphone
         this.title = title
@@ -181,15 +237,15 @@ class Lugar {
             icon: iconBase
         })
         let InfoWindow = '<div class="map-popup"><div class="map-popup-title">'
-        +'<span class="Razura4">' + 
-        title + '</span></div><div class="map-popup-line"></div>' +
-        '<div class="map-popup-text"><span class="Razura5">' + 
-        text + '</span></div></div>'
+            + '<span class="Razura4">' +
+            title + '</span></div><div class="map-popup-line"></div>' +
+            '<div class="map-popup-text"><span class="Razura5">' +
+            text + '</span></div></div>'
 
         this.InfoWindow = new google.maps.InfoWindow({
             content: InfoWindow
         })
-        
+
     }
 }
 
@@ -197,7 +253,7 @@ const local1 = new Lugar(01, [-23.201498, -45.902723], 'Info 1', 'OK', 1, '12996
 const local2 = new Lugar(02, [-23.199651, -45.895396], 'Info 2', 'NopK', 2, '12829229')
 const local3 = new Lugar(03, [-23.191961, -45.887258], 'Info 3', 'Yapek', 3, '099292')
 const local4 = new Lugar(04, [-23.190542, -45.889426], 'Info 4', 'JUP', 4, '022')
-const local5 = new Lugar(05, [-23.201981, -45.894453], 'Info 5', 'LOMPA', 0 ,'321312')
+const local5 = new Lugar(05, [-23.201981, -45.894453], 'Info 5', 'LOMPA', 0, '321312')
 //console.log(local5)
 
 
