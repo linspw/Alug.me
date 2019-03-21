@@ -45,7 +45,7 @@ $('.interruptor-box').click(function(){
         $(this).css({'background-color': '#b3f5df' })
     }
     $(this).toggleClass('active')
-    map1.showByType(verificaInterruptor())
+    map1.mostrarPorTipo(verificaInterruptor())
 })
 
 const verificaInterruptor = () => {
@@ -89,5 +89,7 @@ $(document).ready(function(){
             return
         }
         map1.marcarTemporario(places[0].geometry.location.lat(), places[0].geometry.location.lng())
+        $("#check-endereco").fadeIn(500)
     })
+    $(".gm-style-iw").next("button").hide();
 })

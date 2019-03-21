@@ -190,8 +190,8 @@ body{margin: 0; position: absolute;
                 /*background-color: transparent;*/
                 border-radius: 8px;
                 font-family: 'Roboto-Regular';
-                padding: 2px 4px 2px 4px;
-                font-size: 20px;
+                padding: 2px 5px 2px 5px;
+                font-size: 18px;
                 z-index: 10;
             }
                 input.form-text:focus{
@@ -203,16 +203,18 @@ body{margin: 0; position: absolute;
                 height: 100%;
                 width: 100%;
             }
-
             .text-box{
-                padding: 2px 5px 2px 5px;
-                box-shadow: 0 1px 4px 0 rgba(0,0,0,.34);
+                display: flex;
+                flex-direction: row;
+            /*    box-shadow: 0 1px 4px 0 rgba(0,0,0,.34);*/
             }
+            
                 #check-endereco{
                     position: absolute;
-                    margin-left: 5px;
                     margin-top: 2px;
                     display: none;
+                    right: 10px;
+                    color: #7fdd6a;
                 }
                 .pac-container {
                     display: absolute;
@@ -248,7 +250,15 @@ body{margin: 0; position: absolute;
                 .map-popup-text{
                     width: 100%;
                 }
-
+                .gm-style-iw .gm-style-iw-close {
+                    width: 10px;
+                    height: 10px;
+                    top: 10px;
+                    right: 10px;
+                    }
+                    .gm-style-iw .gm-style-iw-close > img {
+                    display: none;
+                    }
                 
 
 .special-center{

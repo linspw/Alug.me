@@ -78,6 +78,7 @@ class Controlador {
         $('#txt-endereco').val("")
         $('#txt-descricao').val("")
         $('#txt-telefone').val("")
+        $("#check-endereco").fadeOut()
     }
 }
 
@@ -175,7 +176,7 @@ class Mapa {
     removerTemporario() {
         this.temporalMarker.setMap(null)
     }
-    showByType(valor) {
+    mostrarPorTipo(valor) {
         this.menuAtivado = valor
         this.lugares.forEach((e) => {
             if (this.menuAtivado[0] && e.typePLace == 0) {
@@ -212,7 +213,7 @@ class Mapa {
 
     reload() {
         this.temporalMarker.setMap(null)
-        this.showByType(this.menuAtivado)
+        this.mostrarPorTipo(this.menuAtivado)
     }
 }
 
@@ -257,8 +258,8 @@ const local4 = new Lugar(04, [-23.190542, -45.889426], 'Info 4', 'JUP', 4, '022'
 const local5 = new Lugar(05, [-23.201981, -45.894453], 'Info 5', 'LOMPA', 1, '321312', 'Praça do Sol - Vila Adyana')
 
 const map1 = new Mapa()
-let listaAdicional = [local1, local2, local5]
+let listaAdicional = [local1, local2, local3, local4, local5]
 map1.adicionarLugares(...listaAdicional) // Adicionar em forma de lista!
-map1.adicionarLugares(local3, local4) // Adicionar Diretamente
+//map1.adicionarLugares(local3, local4) // Adicionar Diretamente
 const controlSystem = new Controlador()
 
