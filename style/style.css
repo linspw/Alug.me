@@ -329,6 +329,10 @@ span.legendsMapPainel{
     color: white;
     background-color: #a5527a;
 }
+.Color-CB4{
+    color: white;
+    background-color: #344366;
+}
 
 /*Configuração padrões*/
 button, input[type="submit"], input[type="reset"] {
