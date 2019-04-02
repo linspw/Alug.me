@@ -91,5 +91,7 @@ $(document).ready(function(){
         map1.marcarTemporario(places[0].geometry.location.lat(), places[0].geometry.location.lng())
         $("#check-endereco").fadeIn(500)
     })
-    $(".gm-style-iw").next("button").hide();
+    //popupSwift($('#sw1'), "Empresa", "Viagem")
+    $(".tooltip").css("visibility", "visible")
+    $(".tooltiptext").css("visibility", "visible")
 })

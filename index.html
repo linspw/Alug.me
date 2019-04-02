@@ -18,11 +18,35 @@
                     <button class="header-button Color-CB4" tabindex="1">Aluga em São José dos Campos</button>
                 </div>
                 <div class="header-group">
-                    <button class="header-button logo" tabindex="2"><img src="./media/imgs/icons/logoAlugaUltraSmall.png"></button>
+                    <div class="tooltip">
+                        <button id="logo" class="header-button" tabindex="2"><img src="./media/imgs/icons/logoAlugaUltraSmall.png"></button>
+                        <span class="tooltiptext">
+                            <button class="tooltip-closebtn">X</button>
+                            <div class="popupSwift-title">Seja bem-vindo estudande, à plataforma Alug.Me</div>
+                            <div class="popupSwift-text">Aqui você encontra as melhores moradias de São José</div>
+                        </span>
+                    </div>
+                        <!---
+                    <div class="popupSwift">
+                        <div class="popupSwift-title">Seja bem-vindo estudande, à plataforma Alug.Me</div>
+                        <div class="popupSwift-text">Aqui você encontra as melhores moradias de São José</div>
+                    </div>-->
                 </div>
                 <div class="header-group">
-                    <button id="btn-anunciar" class="header-button Color-CB3" tabindex="3">Anunciar o seu Espaço!</button>
-                    <button class="header-button Color-CB2" tabindex="4">Login</button>
+                    <div class="tooltip">
+                        <button id="btn-anunciar" class="header-button Color-CB3" tabindex="3">Anuncie o seu Espaço!</button>
+                        <span class="tooltiptext">
+                            <button class="tooltip-closebtn">X</button>
+                            <div class="popupSwift-text">Aqui você pode anunciar sua moradia, e encontrar uma excelente companhia!</div>
+                        </span>
+                    </div>
+                    <div class="tooltip">
+                        <button class="header-button Color-CB2" tabindex="4">Login</button>
+                        <span class="tooltiptext">
+                            <button class="tooltip-closebtn">X</button>
+                            <div class="popupSwift-text">Faça login e gerencie suas moradias!</div>
+                        </span>
+                    </div>
                 </div>
                 
             </nav>
@@ -106,6 +130,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlLLgWnNjy-ArLJZx9v9vypDll5gQj9Xo&libraries=places"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="scripts/module/jquery.selectric.min.js"></script>
+    <script src="scripts/module/popupSwift.js"></script>
     <script src="scripts/mapObjectNotation.js"></script>
     <script src="scripts/mainObjectNotation.js"></script>
 </body>
