@@ -295,6 +295,17 @@ body{margin: 0; position: absolute;
             border-style: solid;
             border-color: transparent transparent rgb(204, 204, 204) transparent;
           }
+            .hovertooltip{
+                visibility: hidden;
+
+            }
+            .tooltip:hover .hovertooltip{
+                visibility: visible;
+                box-shadow: inset 0px 0px 1px 2px #315867 !important;
+            }
+            .tooltip:hover .normaltooltip{
+                box-shadow: inset 0px 0px 1px 2px #315867 !important;
+            }            
     /*    .tooltip:hover .tooltiptext {
             visibility: visible;
             opacity: 1;

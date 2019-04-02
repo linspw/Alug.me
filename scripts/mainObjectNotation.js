@@ -92,6 +92,6 @@ $(document).ready(function(){
         $("#check-endereco").fadeIn(500)
     })
     //popupSwift($('#sw1'), "Empresa", "Viagem")
-    $(".tooltip").css("visibility", "visible")
-    $(".tooltiptext").css("visibility", "visible")
+    $(".normaltooltip").css("visibility", "visible")
+    $(".normaltooltip").css("visibility", "visible")
 })
