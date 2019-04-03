@@ -1,3 +1,6 @@
+$('button#logo').click(function(){
+    location.reload(true)
+})
 $('#btn-anunciar').click(function(){
     if($('.menu-side-right').hasClass('active')){
         $("#mn-sr").fadeOut(500)

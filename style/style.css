@@ -35,7 +35,7 @@ body{margin: 0; position: absolute;
         position: relative;
     }
     .content{display: flex; box-sizing: border-box;
-         height: calc(100% - 5em);
+         height: calc(100% - 5em); position: relative;
     }
     
         nav.header-nav{width: 100%; 
@@ -63,7 +63,7 @@ body{margin: 0; position: absolute;
                 }
         .wrapper-map{
             position: absolute;
-            height: calc(100% - 5em);
+            height: 100%;
             width: 100%;
         }
             #canvas-map{
@@ -263,7 +263,7 @@ body{margin: 0; position: absolute;
                     display: none;
                     }
 
-        .tooltip {
+        .tooltip, .tooltip-right{
             position: relative;
             display: inline-block;
         }
@@ -285,6 +285,7 @@ body{margin: 0; position: absolute;
             left: 50%;
             margin-left: -50%;
         }
+
         .tooltip .tooltiptext::after {
             content: "";
             position: absolute;
@@ -306,10 +307,7 @@ body{margin: 0; position: absolute;
             .tooltip:hover .normaltooltip{
                 box-shadow: inset 0px 0px 1px 2px #315867 !important;
             }            
-    /*    .tooltip:hover .tooltiptext {
-            visibility: visible;
-            opacity: 1;
-        }*/
+
         .tooltip-closebtn{
             position: absolute;
             top: 0px; right: 0px;
@@ -318,33 +316,7 @@ body{margin: 0; position: absolute;
             background-color: #073054;
             font-size: 10px;
         }
-        /*
 
-        .popupSwift{
-            position: absolute;
-            min-width: 14em;
-            min-height: 3em;
-            background-color: #ffffff; 
-            border-radius: 10px;
-            box-shadow: 0 3px 6px rgba(0,0,0,.2);
-            transition: 0.5s; z-index: 10;
-            margin-top: calc(100%);
-        }
-        .popupSwift:after{
-            content: '';
-            position: absolute;
-            top: 0;
-            z-index: 10;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border: 0.7em solid transparent;
-            border-bottom-color: #ffffff;
-            border-top: 0;
-            margin-left: -0.7em;
-            margin-top: -0.7em;
-        }
-        */
             .popupSwift-title{
                 padding: 10px 10px 0px 10px;
                 color: #8890b6;
@@ -480,4 +452,5 @@ li{margin: 3px 0 3px 0;}
 		height: 4px;
 		background-color: #ffffff;
 		border-radius:2px;
-	}
+    }
+    
