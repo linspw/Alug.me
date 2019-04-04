@@ -4,8 +4,10 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="media/imgs/icons/home-icon.png" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css"
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style/selectric.css">
     <link rel="stylesheet" type="text/css" href="style/style.css">
     <title>Alug.Me - Casas e moradias para estudantes</title>
@@ -14,49 +16,53 @@
 <body>
     <div class="page">
         <div class="header">
+            <button class="mobile-menu"><i id="icon-menu" class="material-icons">menu</i></button>
             <nav class="header-nav">
-                <div class="header-group">
+                <div class="header-group header-choiced">
                     <div class="tooltip">
-                        <button class="header-button Color-CB4" tabindex="1">Aluga em São José dos Campos</button>
+                        <button id="btn-alugasjc" class="header-button Color-CB4 header-choiced" tabindex="1">Aluga em São José dos Campos</button>
                         <span class="tooltiptext hovertooltip">
                             <div class="popupSwift-title">Função desabilitada</div>
                             <div class="popupSwift-text">Adiante você podera anunciar imóveis para venda também!</div>
                         </span>
                     </div>
-                    
+
                 </div>
-                <div class="header-group">
+                <div class="header-group header-logo">
                     <div class="tooltip">
-                        <button id="logo" class="header-button" tabindex="2"><img src="./media/imgs/icons/logoAlugaUltraSmall.png"></button>
+                        <button id="logo" class="header-button" tabindex="2"><img
+                                src="./media/imgs/icons/logoAlugaUltraSmall.png"></button>
                         <span class="tooltiptext normaltooltip">
                             <button class="tooltip-closebtn">X</button>
                             <div class="popupSwift-title">Seja bem-vindo estudande, esta é plataforma Alug.Me</div>
                             <div class="popupSwift-text">Aqui você encontra as melhores moradias de São José</div>
                         </span>
                     </div>
-                        <!---
+                    <!---
                     <div class="popupSwift">
                         <div class="popupSwift-title">Seja bem-vindo estudande, à plataforma Alug.Me</div>
                         <div class="popupSwift-text">Aqui você encontra as melhores moradias de São José</div>
                     </div>-->
                 </div>
-                <div class="header-group">
+                <div class="header-group header-choiced">
                     <div class="tooltip">
-                        <button id="btn-anunciar" class="header-button Color-CB3" tabindex="3">Anuncie o seu Espaço!</button>
+                        <button id="btn-anunciar" class="header-button Color-CB3 header-choiced" tabindex="3">Anuncie o seu
+                            Espaço!</button>
                         <span class="tooltiptext normaltooltip">
                             <button class="tooltip-closebtn">X</button>
-                            <div class="popupSwift-text">Aqui você pode anunciar sua moradia, e encontrar uma excelente companhia!</div>
+                            <div class="popupSwift-text">Aqui você pode anunciar sua moradia, e encontrar uma excelente
+                                companhia!</div>
                         </span>
                     </div>
                     <div class="tooltip">
-                        <button class="header-button Color-CB2" tabindex="4">Login</button>
+                        <button id="btn-login" class="header-button Color-CB2 header-choiced" tabindex="4">Login</button>
                         <span class="tooltiptext hovertooltip">
                             <div class="popupSwift-title">Função desabilitada</div>
                             <div class="popupSwift-text">Faça login e gerencie suas moradias!</div>
                         </span>
                     </div>
                 </div>
-                
+
             </nav>
         </div>
         <div class="content">
@@ -66,41 +72,49 @@
                     <div class="menu-wrapper">
                         <div class="menu-title"><span class="Razura2">Anuncie aqui!</span></div>
                         <div class="menu-line"></div>
-                        
+
                         <div class="menu-item">
                             <span class="Razura3">Titulo do anúncio:</span>
-                            <span class="Razura3"><input type="text" id="txt-titulo" class="form-text" maxlength="30" tabindex="5"/></span>
+                            <span class="Razura3"><input type="text" id="txt-titulo" class="form-text" maxlength="30"
+                                    tabindex="5" /></span>
                         </div>
                         <div class="menu-item">
                             <span class="Razura3">Proprietario:</span>
-                            <span class="Razura3"><input type="text" id="txt-autor" class="form-text" maxlength="25" tabindex="6"/></span>
+                            <span class="Razura3"><input type="text" id="txt-autor" class="form-text" maxlength="25"
+                                    tabindex="6" /></span>
                         </div>
                         <div class="menu-item">
                             <span class="Razura3">Endereço:</span>
-                            <span class="Razura3"><div class="text-box"><input type="text" id="txt-endereco" class="form-text" maxlength="100" tabindex="7" placeholder="Pesquisar o endereço..."/><i id="check-endereco" class="far fa-check-circle"></i></div>
+                            <span class="Razura3">
+                                <div class="text-box"><input type="text" id="txt-endereco" class="form-text"
+                                        maxlength="100" tabindex="7" placeholder="Pesquisar o endereço..." /><i
+                                        id="check-endereco" class="far fa-check-circle"></i></div>
                             </span>
                             <div id="txt-endereco-result"></div>
                         </div>
                         <div class="menu-item">
                             <span class="Razura3">Descrição:</span>
-                            <span class="Razura3"><input type="text" id="txt-descricao" class="form-text" maxlength="100" tabindex="8"/></span>
+                            <span class="Razura3"><input type="text" id="txt-descricao" class="form-text"
+                                    maxlength="100" tabindex="8" /></span>
                         </div>
 
                         <div class="menu-item">
                             <span class="Razura3">Telefone:</span>
-                            <span class="Razura3"><input type="text" id="txt-telefone" class="form-text" maxlength="13" tabindex="9"/></span>
+                            <span class="Razura3"><input type="text" id="txt-telefone" class="form-text" maxlength="13"
+                                    tabindex="9" /></span>
                         </div>
                         <div class="menu-item">
                             <span class="Razura3">Tipo de moradia:</span>
-                                <select id="slc-moradia" class="select-model" tabindex="10">
-                                    <option value="1">Apartamento</option>
-                                    <option value="2">Casa</option>
-                                    <option value="3">República</option>
-                                    <option value="4">Pensão</option>
-                                </select>
+                            <select id="slc-moradia" class="select-model" tabindex="10">
+                                <option value="1">Apartamento</option>
+                                <option value="2">Casa</option>
+                                <option value="3">República</option>
+                                <option value="4">Pensão</option>
+                            </select>
                         </div>
                         <div class="menu-item">
-                                <button id="btn-anunciar-enviar" class="header-button Color-CB1" tabindex="11">Anunciar Moradia!</button>  
+                            <button id="btn-anunciar-enviar" class="header-button Color-CB1" tabindex="11">Anunciar
+                                Moradia!</button>
                         </div>
 
                     </div>
@@ -111,20 +125,40 @@
                             <div class="group-item special-center">
                                 <span class="Razura1">Legenda!</span>
                             </div>
-                            <div class="group-item"><div class="interruptor-canvas"><div id="itr-apartamento" class="interruptor-box" value='1'><div id="itr-apartamento-ball" class="interruptor-ball"></div>
-                            </div><span class="legendsMapPainel Color-SL1">Apartamento</span></div></div>
-                            <div class="group-item"><div class="interruptor-canvas"><div id="itr-casa" class="interruptor-box" value='2'><div id="itr-casa-ball" class="interruptor-ball"></div>
-                            </div><span class="legendsMapPainel Color-SL2">Casas</span></div></div>
-                            <div class="group-item"><div class="interruptor-canvas"><div id="itr-republica" class="interruptor-box" value='3'><div id="itr-republica-ball" class="interruptor-ball"></div>
-                            </div><span class="legendsMapPainel Color-SL3">Repúblicas</span></div></div>
-                            <div class="group-item"><div class="interruptor-canvas"><div id="itr-pensao" class="interruptor-box" value='4'><div id="itr-pensao-ball" class="interruptor-ball"></div>
-                            </div><span class="legendsMapPainel Color-SL4">Pensões</span></div></div>
+                            <div class="group-item">
+                                <div class="interruptor-canvas">
+                                    <div id="itr-apartamento" class="interruptor-box" value='1'>
+                                        <div id="itr-apartamento-ball" class="interruptor-ball"></div>
+                                    </div><span class="legendsMapPainel Color-SL1">Apartamento</span>
+                                </div>
+                            </div>
+                            <div class="group-item">
+                                <div class="interruptor-canvas">
+                                    <div id="itr-casa" class="interruptor-box" value='2'>
+                                        <div id="itr-casa-ball" class="interruptor-ball"></div>
+                                    </div><span class="legendsMapPainel Color-SL2">Casas</span>
+                                </div>
+                            </div>
+                            <div class="group-item">
+                                <div class="interruptor-canvas">
+                                    <div id="itr-republica" class="interruptor-box" value='3'>
+                                        <div id="itr-republica-ball" class="interruptor-ball"></div>
+                                    </div><span class="legendsMapPainel Color-SL3">Repúblicas</span>
+                                </div>
+                            </div>
+                            <div class="group-item">
+                                <div class="interruptor-canvas">
+                                    <div id="itr-pensao" class="interruptor-box" value='4'>
+                                        <div id="itr-pensao-ball" class="interruptor-ball"></div>
+                                    </div><span class="legendsMapPainel Color-SL4">Pensões</span>
+                                </div>
+                            </div>
                         </div>
 
                     </div>
                     <button id="btn-painel-maps" class="btn-painel-maps">
                         <i id="icon-painel-map" class="material-icons" style="color: #283593;">keyboard_arrow_right</i>
-                        
+
                     </button>
                 </div>
             </div>
@@ -132,14 +166,15 @@
         <div class="footer">
         </div>
     </div>
-    <script  src="https://code.jquery.com/jquery-3.3.1.min.js" 
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlLLgWnNjy-ArLJZx9v9vypDll5gQj9Xo&libraries=places"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlLLgWnNjy-ArLJZx9v9vypDll5gQj9Xo&libraries=places"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="scripts/module/jquery.selectric.min.js"></script>
     <script src="scripts/module/popupSwift.js"></script>
     <script src="scripts/mapObjectNotation.js"></script>
     <script src="scripts/mainObjectNotation.js"></script>
 </body>
+
 </html>

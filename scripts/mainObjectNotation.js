@@ -50,6 +50,41 @@ $('.interruptor-box').click(function(){
     $(this).toggleClass('active')
     map1.mostrarPorTipo(verificaInterruptor())
 })
+$(window).on('resize', function(){
+    $('.header').css({'height': '5em'})
+    $('#icon-menu').css({'transform': 'rotate(0)'})
+    $('.header-nav').css({'flex-direction': 'row'})
+    if($('.mobile-menu').hasClass('active')){
+        $('.mobile-menu').toggleClass('active')
+    }
+    if ($(window).width() <= 899) {
+        $('.header-choiced').css({'display': 'none'})
+    }
+    if ($(window).width() > 899) {
+        $('.header-choiced').css({'display': 'flex'})
+    }
+    $('.header-group').css({'flex-direction': 'row'})
+
+})
+
+$('.mobile-menu').click(function(){
+    if($(this).hasClass('active')){
+        $('.header').css({'height': '5em'})
+        $('#icon-menu').css({'transform': 'rotate(0)'});
+        $('.header-nav').css({'flex-direction': 'row'})
+        $('.header-choiced').css({'display': 'none'})
+        $('.header-group').css({'flex-direction': 'row'})
+    }
+    else{
+        $('.header').css({'height': '15em'})
+        $('#icon-menu').css({'transform': 'rotate(-90deg)'});
+        $('.header-nav').css({'flex-direction': 'column-reverse'})
+        $('.header-choiced').css({'display': 'flex'})
+        $('.header-group').css({'flex-direction': 'column'})
+
+    }
+    $(this).toggleClass('active')
+})
 
 const verificaInterruptor = () => {
     let listaVerificada = []
