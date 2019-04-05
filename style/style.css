@@ -33,6 +33,7 @@ body{margin: 0; position: absolute;
         align-items: center;
         z-index: 100;
         position: relative;
+        transition: 0.5s;
     }
     .content{display: flex; box-sizing: border-box;
          height: calc(100% - 5em); position: relative;
@@ -336,15 +337,15 @@ body{margin: 0; position: absolute;
         left: 10%;
         top: 1em;
         border-radius: 10px;
-        width: 3em;
-        height: 3em;
+        width: 2.7em;
+        height: 2.7em;
         background-color: #ffffff;
         display: flex;
         align-items: center;
         justify-content: center;
         display: none;
         box-sizing: border-box;
-        padding: 0.5em;
+        padding: 0em;
         transition: 2s;
     } 
 
