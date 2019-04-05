@@ -57,6 +57,8 @@ body{margin: 0; position: absolute;
                     margin-right: 10px;
                     margin-left: 10px;
                     box-sizing: border-box;
+                    display: flex;
+                    justify-content: center;
                 }
                 #logo{
                     padding: 0px 30px 0px 30px;
@@ -343,7 +345,7 @@ body{margin: 0; position: absolute;
         display: none;
         box-sizing: border-box;
         padding: 0.5em;
-        transition: .5s;
+        transition: 2s;
     } 
 
 .special-center{
@@ -481,8 +483,29 @@ li{margin: 3px 0 3px 0;}
         .header-choiced{
             display: none;
         }
+        
+        button.header-button{
+            padding: 8px 8px 8px 8px;
+            box-shadow: 0 3px 6px rgba(247, 155, 155, 0.1);
+            width: 100%;
+            border-radius: 10px;
+            margin-right: 10px;
+            margin-left: 10px;
+            box-sizing: border-box;
+        }
+        .tooltip{
+            width: 100%;
+        }
+        .header-group{
+            width: 100%;
+        }
         .header-logo{
             order: 1;
+            width: auto;
+        }
+        .Color-ES1{
+            color: #3b7668;
+            background-color: transparent;
         }
     }
     @media screen and (min-width: 600px) and (max-width: 899px) { /* ...tablet styles here... */
@@ -495,10 +518,31 @@ li{margin: 3px 0 3px 0;}
         .header-choiced{
             display: none;
         }
+        
+        button.header-button{
+            padding: 8px 8px 8px 8px;
+            box-shadow: 0 3px 6px rgba(247, 155, 155, 0.1);
+            width: 100%;
+            border-radius: 10px;
+            margin-right: 10px;
+            margin-left: 10px;
+            box-sizing: border-box;
+        }
+        .tooltip{
+            width: 100%;
+        }
+        .header-group{
+            width: 100%;
+        }
         .header-logo{
             order: 1;
-        }
+            width: auto;
 
+        }
+        .Color-ES1{
+            color: #3b7668;
+            background-color: transparent;
+        }
     }
     @media screen and (min-width: 900px) { /* ...desktop styles here...*/
         .header{
@@ -513,6 +557,5 @@ li{margin: 3px 0 3px 0;}
         nav.header-nav{
             flex-direction: row;
         }
-        
         
     }
