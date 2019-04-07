@@ -243,7 +243,7 @@ class Lugar {
             title + '</span></div><div class="map-popup-line"></div>' +
             '<div class="map-popup-text"><span class="Razura5">' +
             text + '</span></div><div class="map-popup-block"><div class="map-popup-autor"><span class="Razura8">Autor:'+ autor 
-            +'</span></div><div class="map-popup-celphone"><span class="Razura6">' + celphone +
+            +'</span></div><div class="map-popup-celphone"><span class="Razura6">Celular: ' + celphone +
              '</span></div><div class="map-popup-andress"><span class="Razura7">Endereço: ' +
              andress +'</span></div></div></div>'
 
@@ -255,10 +255,10 @@ class Lugar {
 }
 
 const local1 = new Lugar(01, [-23.201498, -45.902723], 'Exemplo 1', 'Info para teste 1',  1, '12996277432', 'Avenida São João', 'Jessé')
-const local2 = new Lugar(02, [-23.199651, -45.895396], 'Exemplo 2', 'Info para teste 2', 2, '12829229', 'Avenida 9 de Julho', 'Guilherme')
-const local3 = new Lugar(03, [-23.191961, -45.887258], 'Exemplo 3', 'Info para teste 3',  3, '099292', 'Rua Euclídes Miragaia', 'Davi')
-const local4 = new Lugar(04, [-23.190542, -45.889426], 'Exemplo 4', 'Info para teste 4',  4, '022', 'Rua Major Antonio Domingues', 'Gabriel')
-const local5 = new Lugar(05, [-23.201981, -45.894453], 'Exemplo 5', 'Info para teste 5', 1, '321312', 'Praça do Sol - Vila Adyana', 'David')
+const local2 = new Lugar(02, [-23.199651, -45.895396], 'Exemplo 2', 'Info para teste 2', 2, '128292329', 'Avenida 9 de Julho', 'Guilherme')
+const local3 = new Lugar(03, [-23.191961, -45.887258], 'Exemplo 3', 'Info para teste 3',  3, '12923099292', 'Rua Euclídes Miragaia', 'Davi')
+const local4 = new Lugar(04, [-23.190542, -45.889426], 'Exemplo 4', 'Info para teste 4',  4, '022192929', 'Rua Major Antonio Domingues', 'Gabriel')
+const local5 = new Lugar(05, [-23.201981, -45.894453], 'Exemplo 5', 'Info para teste 5', 1, '3213123211', 'Praça do Sol - Vila Adyana', 'David')
 
 const map1 = new Mapa()
 let listaAdicional = [local1, local2, local3, local4, local5]
