@@ -157,7 +157,7 @@ class Mapa {
             url: "./media/imgs/icons/home-icon.png",
             scaledSize: new google.maps.Size(32, 32),
             origin: new google.maps.Point(0, 0),
-            anchor: new google.maps.Point(0, 0)
+            anchor: new google.maps.Point(0, 32)
         }
         var infoWindow = new google.maps.InfoWindow({
             content: '<div>Seu marcador!</div>'
@@ -251,11 +251,11 @@ class Lugar {
     }
 }
 
-const local1 = new Lugar(01, [-23.201498, -45.902723], 'Info 1', 'OK', 1, '12996277432', 'Avenida São João')
-const local2 = new Lugar(02, [-23.199651, -45.895396], 'Info 2', 'NopK', 2, '12829229', 'Avenida 9 de Julho')
-const local3 = new Lugar(03, [-23.191961, -45.887258], 'Info 3', 'Yapek', 3, '099292', 'Rua Euclídes Miragaia')
-const local4 = new Lugar(04, [-23.190542, -45.889426], 'Info 4', 'JUP', 4, '022', 'Rua Major Antonio Domingues')
-const local5 = new Lugar(05, [-23.201981, -45.894453], 'Info 5', 'LOMPA', 1, '321312', 'Praça do Sol - Vila Adyana')
+const local1 = new Lugar(01, [-23.201498, -45.902723], 'Info para teste 1', 'Exemplo 1', 1, '12996277432', 'Avenida São João')
+const local2 = new Lugar(02, [-23.199651, -45.895396], 'Info para teste 2', 'Exemplo 2', 2, '12829229', 'Avenida 9 de Julho')
+const local3 = new Lugar(03, [-23.191961, -45.887258], 'Info para teste 3', 'Exemplo 3', 3, '099292', 'Rua Euclídes Miragaia')
+const local4 = new Lugar(04, [-23.190542, -45.889426], 'Info para teste 4', 'Exemplo 4', 4, '022', 'Rua Major Antonio Domingues')
+const local5 = new Lugar(05, [-23.201981, -45.894453], 'Info para teste 5', 'Exemplo 5', 1, '321312', 'Praça do Sol - Vila Adyana')
 
 const map1 = new Mapa()
 let listaAdicional = [local1, local2, local3, local4, local5]

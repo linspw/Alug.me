@@ -50,6 +50,8 @@ $('.interruptor-box').click(function(){
     $(this).toggleClass('active')
     map1.mostrarPorTipo(verificaInterruptor())
 })
+
+
 $(window).on('resize', function(){
     $('.header').css({'height': '5em'})
     $('#icon-menu').css({'transform': 'rotate(0)'})
@@ -86,6 +88,14 @@ $('.mobile-menu').click(function(){
     $(this).toggleClass('active')
 })
 
+const verificaMobile = () => {
+    if ($(window).width() <= 899) {
+        return true
+    }
+    if ($(window).width() > 899) {
+        return false
+    }
+}
 const verificaInterruptor = () => {
     let listaVerificada = []
     $('#itr-apartamento').hasClass('active')? listaVerificada.push(false, true): listaVerificada.push(false, false) 
@@ -119,7 +129,10 @@ const verificaAnunciarSlots = () => {
 
 $(document).ready(function(){
     $('select').selectric()
-    $('#btn-painel-maps').click()
+    if(!verificaMobile()){
+        $('#btn-painel-maps').click()
+        console.log("Desktop");
+    }
     $('.interruptor-box').click()
     map1.searchBox.addListener('places_changed', function() {
         var places = map1.searchBox.getPlaces()  
@@ -129,7 +142,6 @@ $(document).ready(function(){
         map1.marcarTemporario(places[0].geometry.location.lat(), places[0].geometry.location.lng())
         $("#check-endereco").fadeIn(500)
     })
-    //popupSwift($('#sw1'), "Empresa", "Viagem")
     $(".normaltooltip").css("visibility", "visible")
     $(".normaltooltip").css("visibility", "visible")
 })
