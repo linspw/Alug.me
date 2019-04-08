@@ -21,7 +21,7 @@
                 <div class="header-group header-choiced">
                     <div class="tooltip">
                         <button id="btn-alugasjc" class="header-button Color-CB4 header-choiced Color-ES1" tabindex="1">Aluga em São José dos Campos</button>
-                        <span class="tooltiptext hovertooltip">
+                        <span id="tpt-MM-alugasjc" class="tooltiptext">
                             <div class="popupSwift-title">Função desabilitada</div>
                             <div class="popupSwift-text">Adiante você podera anunciar imóveis para venda também!</div>
                         </span>
@@ -32,8 +32,7 @@
                     <div class="tooltip">
                         <button id="logo" class="header-button" tabindex="2"><img
                                 src="./media/imgs/icons/logoAlugaUltraSmall.png"></button>
-                        <span class="tooltiptext normaltooltip">
-                            <button class="tooltip-closebtn">X</button>
+                        <span id="tpt-MM-logo" class="tooltiptext">
                             <div class="popupSwift-title">Seja bem-vindo estudande, esta é plataforma Alug.Me</div>
                             <div class="popupSwift-text">Aqui você encontra as melhores moradias de São José</div>
                         </span>
@@ -43,15 +42,14 @@
                     <div class="tooltip">
                         <button id="btn-anunciar" class="header-button Color-CB3 header-choiced Color-ES1" tabindex="3">Anuncie o seu
                             Espaço!</button>
-                        <span class="tooltiptext normaltooltip">
-                            <button class="tooltip-closebtn">X</button>
+                        <span id="tpt-MM-anunciar" class="tooltiptext">
                             <div class="popupSwift-text">Aqui você pode anunciar sua moradia, e encontrar uma excelente
                                 companhia!</div>
                         </span>
                     </div>
                     <div class="tooltip">
                         <button id="btn-login" class="header-button Color-CB2 header-choiced Color-ES1" tabindex="4">Login</button>
-                        <span class="tooltiptext hovertooltip">
+                        <span id="tpt-MM-login" class="tooltiptext">
                             <div class="popupSwift-title">Função desabilitada</div>
                             <div class="popupSwift-text">Faça login e gerencie suas moradias!</div>
                         </span>
@@ -82,10 +80,9 @@
                             <span class="Razura3">Endereço:</span>
                             <span class="Razura3">
                                 <div class="text-box"><input type="text" id="txt-endereco" class="form-text"
-                                        maxlength="100" tabindex="7" placeholder="Pesquisar o endereço..." /><i
-                                        id="check-endereco" class="far fa-check-circle"></i></div>
+                                        maxlength="100" tabindex="7" placeholder="Pesquisar o endereço..." />
+                                        <i id="check-endereco" class="far fa-check-circle"></i></div>
                             </span>
-                            <div id="txt-endereco-result"></div>
                         </div>
                         <div class="menu-item">
                             <span class="Razura3">Descrição:</span>

@@ -7,7 +7,3 @@ function popupSwift (place, title, data){
     console.log("Funcionou")
 
 }
-$('.tooltip-closebtn').click(function(){
-    $(this).parent(".tooltip").css("visibility", "hidden")
-    $(this).parent(".tooltiptext").css("visibility", "hidden")
-})

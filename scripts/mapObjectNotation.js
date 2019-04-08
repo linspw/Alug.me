@@ -1,26 +1,52 @@
-jQuery.event.special.touchstart = {
-    setup: function (_, ns, handle) {
-        if (ns.includes("noPreventDefault")) {
-            this.addEventListener("touchstart", handle, { passive: false });
-        } else {
-            this.addEventListener("touchstart", handle, { passive: true });
-        }
-    }
-}
-
 class Controlador {
     constructor() {
         this.historicoSearch = []
+        this.txt_A_titulo = $('#txt-titulo')
+        this.txt_A_autor = $('#txt-autor')
+        this.txt_A_endereco = $('#txt-endereco')
+        this.txt_A_descricao = $('#txt-descricao')
+        this.txt_A_telefone = $('#txt-telefone')
+        this.check_A_endereco = $("#check-endereco")
+        this.btn_A_anunciar = $('#btn-anunciar')
+        this.window = $(window)
+        this.tooltipMenuAlugarSJC = $('#tpt-MM-alugasjc')
+        this.tooltipMenuLogo = $('#tpt-MM-logo')
+        this.tooltipMenuAnunciar = $('#tpt-MM-anunciar')
+        this.tooltipMenuLogin = $('#tpt-MM-login')
+
     }
-    confereEntrada(titulo, autor, descricao, telefone, endereco) {
-        if (typeof titulo != "string" && typeof autor != "string" && typeof descricao != "string" && typeof telefone != "string" && typeof endereco != "string") {
-            console.log("Erro - Um dos valores dados não é String")
-            return 0
-        } else if (titulo.length > 25 && autor.length > 40 && descricao.length > 25 && telefone.length > 12 && endereco.length > 100) {
-            console.log("Erro - Um dos campos possui tamanho maior do que o recomendado")
-            return 0
+    verifyIsMobile(){
+        if (this.window.width() <= 899) {
+            console.log("É mobile")
+            return true
         }
-        else {
+        if (this.window.width() > 899) {
+            console.log("É Desktop")
+            return false
+        }
+    }
+    verifyAnunciarSlots(){
+        if((this.txt_A_titulo.val() == "") || this.txt_A_titulo.val().length > 25){
+            swal("Opa!", "O título não foi preenchido!", "error" )
+            return
+        }
+        if((this.txt_A_autor.val() == "") || this.txt_A_autor.val().length > 25){
+            swal("Opa!", "Algum campo não foi preenchido!", "error" )
+            return
+        }
+        if(this.txt_A_endereco.val() == ""){
+            swal("Opa!", "Algum campo não foi preenchido!", "error" )
+            return
+        }
+        if((this.txt_A_descricao.val() == "") || this.txt_A_descricao.val().length > 50){
+            swal("Opa!", "Algum campo não foi preenchido!", "error" )
+            return
+        }
+        if((this.txt_A_telefone.val() == "") || this.txt_A_telefone.val().length > 13){
+            swal("Opa!", "Algum campo não foi preenchido!", "error" )
+            return
+        }
+        else{
             return 1
         }
     }
@@ -58,27 +84,39 @@ class Controlador {
                 dangerMode: true,
             }).then((btAtivado) => {
                 if (btAtivado) {
-                    map1.adicionarLugares(new Lugar(map1.lugares.length + 1, [data.geometry.location.lat(), data.geometry.location.lng()], titulo, descricao, tipoMoradia, telefone, endereco, autor))
+                    mapSystem.adicionarLugares(new Lugar(mapSystem.lugares.length + 1, [data.geometry.location.lat(), data.geometry.location.lng()], titulo, descricao, tipoMoradia, telefone, endereco, autor))
                     swal({ title: "Lugar Adicionado!", text: "Conteudo adicionado parabéns!", icon: "success" })
                     controlSystem.cleanDataInput()
-                    $('#btn-anunciar').click()
+                    this.btn_A_anunciar.click()
                 }
             })
         }
-        if (this.confereEntrada(titulo, autor, descricao, telefone, endereco)) {
-            this.pesquisarEndereco(endereco, focus, adicionarLugar)
-        }
-        else {
-            console.log("Não funcional!")
-        }
+        this.pesquisarEndereco(endereco, focus, adicionarLugar)
     }
     cleanDataInput() {
-        $('#txt-titulo').val("")
-        $('#txt-autor').val("")
-        $('#txt-endereco').val("")
-        $('#txt-descricao').val("")
-        $('#txt-telefone').val("")
-        $("#check-endereco").fadeOut()
+        this.txt_A_titulo.val("")
+        this.txt_A_autor.val("")
+        this.txt_A_endereco.val("")
+        this.txt_A_descricao.val("")
+        this.txt_A_telefone.val("")
+        this.check_A_endereco.fadeOut()
+    }
+    loadTooltip(element, type){
+        if(type == 1){
+            if(element.hasClass('hovertooltip')){
+                element.removeClass('hovertooltip')
+                element.attr('style','');
+            }
+            element.addClass("normaltooltip")
+            element.append( "<button class='tooltip-closebtn'>X</button>")
+        } else if(type == 2){
+            if(element.hasClass('normaltooltip')){
+                element.children('button.tooltip-closebtn').remove('button.tooltip-closebtn')
+                element.removeClass('normaltooltip')
+                element.attr('style','');
+            }
+            element.addClass("hovertooltip")
+        }
     }
 }
 
@@ -218,37 +256,37 @@ class Mapa {
 }
 
 class Lugar {
-    constructor(ID, Location, title, text, typePLace = 0, celphone = null, andress = null, autor=null) {
+    constructor(ID, location, title, text, typePLace = 0, celphone = null, andress = null, autor=null) {
         this.ID = ID
-        this.Location = { lat: Location[0], lng: Location[1] }
-        this.autor = autor
+        this.location = { lat: location[0], lng: location[1] }
+        this.title = title
+        this.text = text
+        this.typePLace = typePLace
+        this.celphone = celphone
         this.andress = andress
+        this.autor = autor
 
         let iconBase = './media/imgs/icons/'
         if (typePLace == 1) { iconBase += 'Apartamento.png' }
         if (typePLace == 2) { iconBase += 'Casa.png' }
         if (typePLace == 3) { iconBase += 'Republica.png' }
         if (typePLace == 4) { iconBase += 'Pensao.png' }
-        this.typePLace = typePLace
-        this.celphone = celphone
-        this.title = title
-        this.text = text
         this.marker = new google.maps.Marker({
-            position: { lat: Location[0], lng: Location[1] },
+            position: { lat: location[0], lng: location[1] },
             title: title,
             icon: iconBase
         })
-        let InfoWindow = '<div class="map-popup"><div class="map-popup-title">'
+        let InfoWindowCanvas = '<div class="map-popup"><div class="map-popup-title">'
             + '<span class="Razura4">' +
             title + '</span></div><div class="map-popup-line"></div>' +
             '<div class="map-popup-text"><span class="Razura5">' +
-            text + '</span></div><div class="map-popup-block"><div class="map-popup-autor"><span class="Razura8">Autor:'+ autor 
+            text + '</span></div><div class="map-popup-block"><div class="map-popup-autor"><span class="Razura8">Autor: '+ autor 
             +'</span></div><div class="map-popup-celphone"><span class="Razura6">Celular: ' + celphone +
              '</span></div><div class="map-popup-andress"><span class="Razura7">Endereço: ' +
              andress +'</span></div></div></div>'
 
         this.InfoWindow = new google.maps.InfoWindow({
-            content: InfoWindow
+            content: InfoWindowCanvas
         })
 
     }
@@ -260,9 +298,8 @@ const local3 = new Lugar(03, [-23.191961, -45.887258], 'Exemplo 3', 'Info para t
 const local4 = new Lugar(04, [-23.190542, -45.889426], 'Exemplo 4', 'Info para teste 4',  4, '022192929', 'Rua Major Antonio Domingues', 'Gabriel')
 const local5 = new Lugar(05, [-23.201981, -45.894453], 'Exemplo 5', 'Info para teste 5', 1, '3213123211', 'Praça do Sol - Vila Adyana', 'David')
 
-const map1 = new Mapa()
+const mapSystem = new Mapa()
 let listaAdicional = [local1, local2, local3, local4, local5]
-map1.adicionarLugares(...listaAdicional) // Adicionar em forma de lista!
-//map1.adicionarLugares(local3, local4) // Adicionar Diretamente
+mapSystem.adicionarLugares(...listaAdicional) // Adicionar em forma de lista!
 const controlSystem = new Controlador()
 

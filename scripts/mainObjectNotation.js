@@ -6,11 +6,17 @@ $('#btn-anunciar').click(function(){
         $("#mn-sr").fadeOut(500)
         $(".menu-wrapper").fadeOut(0)
         document.getElementById("mn-sr").style.width = "0em"
+        if(controlSystem.verifyIsMobile() && $('.mobile-menu').hasClass("active")){
+            $('.mobile-menu').click()
+        }
     }
     else{
         $("#mn-sr").css("display", "flex").hide().fadeIn(500)
         $(".menu-wrapper").css("display", "flex").hide().fadeIn(500)
         document.getElementById("mn-sr").style.width = "20em"
+        if(controlSystem.verifyIsMobile()){
+            $('.mobile-menu').click()
+        }
     }
     $('.menu-side-right').toggleClass('active')
 })
@@ -33,8 +39,8 @@ $('#btn-painel-maps').click(function(){
 })
 
 $('#btn-anunciar-enviar').click(function(){
-    if(verificaAnunciarSlots()){
-        controlSystem.processoAdicionar($('#txt-titulo').val(), $('#txt-autor').val(), $('#txt-descricao').val(), $('#txt-telefone').val(), $('#txt-endereco').val(), map1, $('#slc-moradia').val())
+    if(controlSystem.verifyAnunciarSlots()){
+        controlSystem.processoAdicionar($('#txt-titulo').val(), $('#txt-autor').val(), $('#txt-descricao').val(), $('#txt-telefone').val(), $('#txt-endereco').val(), mapSystem, $('#slc-moradia').val())
     }
 })
 
@@ -48,9 +54,15 @@ $('.interruptor-box').click(function(){
         $(this).css({'background-color': '#b3f5df' })
     }
     $(this).toggleClass('active')
-    map1.mostrarPorTipo(verificaInterruptor())
+    mapSystem.mostrarPorTipo(verificaInterruptor())
 })
-
+$(document).on("click", '.menu-closebtn', function(){
+    $('#btn-anunciar').click()
+})
+$(document).on("click", '.tooltip-closebtn', function(){
+    $(this).parent(".tooltip").css("visibility", "hidden")
+    $(this).parent(".tooltiptext").css("visibility", "hidden")
+})
 
 $(window).on('resize', function(){
     $('.header').css({'height': '5em'})
@@ -59,12 +71,28 @@ $(window).on('resize', function(){
     if($('.mobile-menu').hasClass('active')){
         $('.mobile-menu').toggleClass('active')
     }
-    if ($(window).width() <= 899) {
-        $('.header-choiced').css({'display': 'none'})
-    }
-    if ($(window).width() > 899) {
+    if(!controlSystem.verifyIsMobile()){
+        if(!$('#btn-painel-maps').hasClass('active')){
+            $('#btn-painel-maps').click()
+        }
         $('.header-choiced').css({'display': 'flex'})
+        controlSystem.loadTooltip(controlSystem.tooltipMenuAlugarSJC, 2)
+        controlSystem.loadTooltip(controlSystem.tooltipMenuLogo, 1)
+        controlSystem.loadTooltip(controlSystem.tooltipMenuAnunciar, 1)
+        controlSystem.loadTooltip(controlSystem.tooltipMenuLogin, 2)
+        $('#mn-sr').children('button.menu-closebtn').remove('button.menu-closebtn')
+    } else{
+        $('.header-choiced').css({'display': 'none'})
+        controlSystem.loadTooltip(controlSystem.tooltipMenuAlugarSJC, 2)
+        controlSystem.loadTooltip(controlSystem.tooltipMenuLogo, 1)
+        controlSystem.loadTooltip(controlSystem.tooltipMenuAnunciar, 2)
+        controlSystem.loadTooltip(controlSystem.tooltipMenuLogin, 2)
+        if($('#btn-painel-maps').hasClass('active')){
+            $('#btn-painel-maps').click()
+        }
+        $('#mn-sr').append( "<button class='menu-closebtn'>X</button>")
     }
+
     $('.header-group').css({'flex-direction': 'row'})
 
 })
@@ -83,19 +111,12 @@ $('.mobile-menu').click(function(){
         $('.header-nav').css({'flex-direction': 'column-reverse'})
         $('.header-choiced').css({'display': 'flex'})
         $('.header-group').css({'flex-direction': 'column'})
+        $('.tooltip-closebtn').click()
 
     }
     $(this).toggleClass('active')
 })
 
-const verificaMobile = () => {
-    if ($(window).width() <= 899) {
-        return true
-    }
-    if ($(window).width() > 899) {
-        return false
-    }
-}
 const verificaInterruptor = () => {
     let listaVerificada = []
     $('#itr-apartamento').hasClass('active')? listaVerificada.push(false, true): listaVerificada.push(false, false) 
@@ -104,44 +125,30 @@ const verificaInterruptor = () => {
     $('#itr-pensao').hasClass('active')? listaVerificada.push(true): listaVerificada.push(false)
     return listaVerificada
 }
-const verificaAnunciarSlots = () => {
-    if($('#txt-titulo').val() == ""){
-        swal("Opa!", "Algum campo não foi preenchido!", "error" )
-        return
-    }
-    if($('#txt-autor').val() == ""){
-        return
-    }
-    if($('#txt-descricao').val() == ""){
-        return
-    }
-    if($('#txt-telefone').val() == ""){
-        return
-    }
-    if($('#txt-endereco').val() == ""){
-        return
-    }
-    else{
-        return 1
-    }
-}
-
 
 $(document).ready(function(){
-    $('select').selectric()
-    if(!verificaMobile()){
+    $('select').selectric() //Inicia o select do anuncio
+    if(!controlSystem.verifyIsMobile()){
         $('#btn-painel-maps').click()
-        console.log("Desktop");
+        controlSystem.loadTooltip(controlSystem.tooltipMenuAlugarSJC, 2)
+        controlSystem.loadTooltip(controlSystem.tooltipMenuLogo, 1)
+        controlSystem.loadTooltip(controlSystem.tooltipMenuAnunciar, 1)
+        controlSystem.loadTooltip(controlSystem.tooltipMenuLogin, 2)
+    } else{
+        controlSystem.loadTooltip(controlSystem.tooltipMenuAlugarSJC, 2)
+        controlSystem.loadTooltip(controlSystem.tooltipMenuLogo, 1)
+        controlSystem.loadTooltip(controlSystem.tooltipMenuAnunciar, 2)
+        controlSystem.loadTooltip(controlSystem.tooltipMenuLogin, 2)
+        $('#mn-sr').append( "<button class='menu-closebtn'>X</button>")
     }
     $('.interruptor-box').click()
-    map1.searchBox.addListener('places_changed', function() {
-        var places = map1.searchBox.getPlaces()  
+    mapSystem.searchBox.addListener('places_changed', function() {
+        var places = mapSystem.searchBox.getPlaces()  
         if (places.length == 0) {
             return
         }
-        map1.marcarTemporario(places[0].geometry.location.lat(), places[0].geometry.location.lng())
-        $("#check-endereco").fadeIn(500)
+        mapSystem.marcarTemporario(places[0].geometry.location.lat(), places[0].geometry.location.lng())
+        controlSystem.check_A_endereco.fadeIn(500)
     })
-    $(".normaltooltip").css("visibility", "visible")
-    $(".normaltooltip").css("visibility", "visible")
+
 })
