@@ -101,15 +101,13 @@ $('.mobile-menu').click(function(){
     if($(this).hasClass('active')){
         $('.header-choiced').fadeOut(0)
         $('.header').css({'height': '5em'})
-        //$('#icon-menu').css({'transform': 'rotate(0)'});
-        $('.header-nav').css({'flex-direction': 'row'})
+        $('.header-nav').css({'flex-direction': 'row', 'justify-content': 'space-around'})
         $('.header-group').css({'flex-direction': 'row'})
     }
     else{
         $('.header-choiced').css("display", "flex").hide().fadeIn(500)
-        $('.header').css({'height': '15em'})
-        //$('#icon-menu').css({'transform': 'rotate(-90deg)'});
-        $('.header-nav').css({'flex-direction': 'column-reverse'})
+        $('.header').css({'height': '12em'})
+        $('.header-nav').css({'flex-direction': 'column-reverse', 'justify-content': 'center'})
         $('.header-group').css({'flex-direction': 'column'})
         $('.tooltip-closebtn').click()
 
