@@ -87,6 +87,7 @@ body{margin: 0; position: absolute;
                 right: 0;
                 transition: .5s;
                 overflow: hidden;
+                z-index: 15;
             }
             #mn-sr{display: none;}
             .painel-maps{
