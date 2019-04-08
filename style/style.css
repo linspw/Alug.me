@@ -246,14 +246,16 @@ body{margin: 0; position: absolute;
                 width: 14em;
                 border-radius: 10px;
             }
-
+            .map-popup-temporal{
+                padding: 0px 24px 0px 2px;
+            }
             .map-popup{
                 display: flex;
                 flex-direction: column;
                 box-sizing: border-box;
                 min-width: 10em;
                 max-width: 22em;
-            }
+            } 
                 .map-popup-title{
                     width: 100%;
                 }

@@ -195,10 +195,10 @@ class Mapa {
             url: "./media/imgs/icons/home-icon.png",
             scaledSize: new google.maps.Size(32, 32),
             origin: new google.maps.Point(0, 0),
-            anchor: new google.maps.Point(0, 32)
+            anchor: new google.maps.Point(16, 32)
         }
         var infoWindow = new google.maps.InfoWindow({
-            content: '<div>Seu marcador!</div>'
+            content: '<div class="map-popup-temporal">Seu marcador!</div>'
         })
         this.temporalMarker = new google.maps.Marker({
             position: { lat, lng },
