@@ -136,8 +136,8 @@ class Mapa {
             "stylers": [{ "visibility": "off" }]
         }]
         this.mapOptions = {
-            center: new google.maps.LatLng(-23.199651, -45.895396),
-            zoom: 15,
+            center: new google.maps.LatLng(-23.196459, -45.8954438,15.5),
+            zoom: 16,
             mapTypeControlOptions: {
                 mapTypeIds: []
             },
@@ -265,12 +265,11 @@ class Lugar {
         this.celphone = celphone
         this.andress = andress
         this.autor = autor
-
         let iconBase = './media/imgs/icons/'
-        if (typePLace == 1) { iconBase += 'Apartamento.png' }
-        if (typePLace == 2) { iconBase += 'Casa.png' }
-        if (typePLace == 3) { iconBase += 'Republica.png' }
-        if (typePLace == 4) { iconBase += 'Pensao.png' }
+        if (typePLace == 1) {/* iconBase += 'Apartamento.png' */ iconBase+= 'marker_purpleA.png'}
+        if (typePLace == 2) {/* iconBase += 'Casa.png' */ iconBase+= 'marker_greenC.png' }
+        if (typePLace == 3) {/* iconBase += 'Republica.png' */ iconBase+= 'marker_redR.png' }
+        if (typePLace == 4) {/* iconBase += 'Pensao.png' */ iconBase+= 'marker_blueP.png'}
         this.marker = new google.maps.Marker({
             position: { lat: location[0], lng: location[1] },
             title: title,
@@ -297,9 +296,11 @@ const local2 = new Lugar(02, [-23.199651, -45.895396], 'Exemplo 2', 'Info para t
 const local3 = new Lugar(03, [-23.191961, -45.887258], 'Exemplo 3', 'Info para teste 3',  3, '12923099292', 'Rua Euclídes Miragaia', 'Davi')
 const local4 = new Lugar(04, [-23.190542, -45.889426], 'Exemplo 4', 'Info para teste 4',  4, '022192929', 'Rua Major Antonio Domingues', 'Gabriel')
 const local5 = new Lugar(05, [-23.201981, -45.894453], 'Exemplo 5', 'Info para teste 5', 1, '3213123211', 'Praça do Sol - Vila Adyana', 'David')
+const local6 = new Lugar(06, [-23.195421, -45.893762], 'Exemplo 6', 'Info para teste 6', 3, '3292-3211', 'Av. Nove de Julho, 256', 'Hugo')
+const local7 = new Lugar(07, [-23.195608, -45.892238], 'Exemplo 7', 'Info para teste 7', 2, '99230120', 'Av. Paulo Becker, 98', 'Filipe')
 
 const mapSystem = new Mapa()
-let listaAdicional = [local1, local2, local3, local4, local5]
+let listaAdicional = [local1, local2, local3, local4, local5, local6, local7]
 mapSystem.adicionarLugares(...listaAdicional) // Adicionar em forma de lista!
 const controlSystem = new Controlador()
 
